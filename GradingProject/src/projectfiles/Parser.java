@@ -12,7 +12,7 @@ public class Parser {
 		@SuppressWarnings("resource")
 		Scanner sc = new Scanner(file);
 //		sc.useDelimiter();
-		sc.useDelimiter("/^CSE 237$/");
+		sc.skip("/^CSE 237$/");
 		while(sc.hasNextLine()) {
 			System.out.println(sc.nextLine());
 		}
