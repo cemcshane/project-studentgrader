@@ -12,7 +12,9 @@ public class Parser {
 		@SuppressWarnings("resource")
 		Scanner sc = new Scanner(file);
 		while(sc.hasNextLine()) {
-			System.out.println(sc.nextLine());
+			if(sc.nextLine().equals("Class name:")) {
+				System.out.println(sc.nextLine());
+			}
 		}
 	}
 
