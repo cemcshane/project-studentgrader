@@ -12,7 +12,7 @@ public class Parser {
 		@SuppressWarnings("resource")
 		Scanner sc = new Scanner(file);
 //		sc.useDelimiter();
-		sc.useDelimiter("/^Class name:$/");
+		sc.useDelimiter("Class name:");
 		while(sc.hasNextLine()) {
 			System.out.println(sc.nextLine());
 		}
