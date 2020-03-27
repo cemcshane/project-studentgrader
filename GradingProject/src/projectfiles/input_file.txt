@@ -1,2 +1,4 @@
 Class name:
 CSE 237
+CSE 131
+CSE 332
