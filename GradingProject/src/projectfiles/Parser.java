@@ -3,6 +3,7 @@ package projectfiles;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 public class Parser {
 
@@ -12,7 +13,7 @@ public class Parser {
 		@SuppressWarnings("resource")
 		Scanner sc = new Scanner(file);
 //		sc.useDelimiter();
-		sc.skip("/^CSE 237$/");
+		sc.skip(Pattern.compile("Class name:"));
 		while(sc.hasNextLine()) {
 			System.out.println(sc.nextLine());
 		}
