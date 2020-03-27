@@ -11,10 +11,9 @@ public class Parser {
 		File file = new File(args[0]);
 		@SuppressWarnings("resource")
 		Scanner sc = new Scanner(file);
+		sc.useDelimiter("Class name:");
 		while(sc.hasNextLine()) {
-			if(sc.nextLine().equals("Class name:")) {
-				System.out.println(sc.nextLine());
-			}
+			System.out.println(sc.nextLine());
 		}
 	}
 
