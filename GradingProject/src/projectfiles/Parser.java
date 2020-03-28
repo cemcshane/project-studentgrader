@@ -47,7 +47,7 @@ public class Parser {
 		while(sc.hasNextLine()) {
 			alreadyParsed = false;
 			String line = sc.nextLine();
-			if(line.matches("+/w")) {
+			if(line.matches("[A-Za-z0-9_]+")) {
 				if(linesParsed==0) {
 					className = line;
 					++linesParsed;
