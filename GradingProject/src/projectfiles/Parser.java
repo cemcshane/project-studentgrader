@@ -88,6 +88,7 @@ public class Parser {
 					String [] splitGPA = line.split("/");
 					gpa = Double.parseDouble(splitGPA[0]);
 					possibleGPA = Double.parseDouble(splitGPA[1]);
+					++linesParsed;
 				}
 			}
 		}
