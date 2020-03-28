@@ -1,15 +1,16 @@
 Replace the bracketed statements with your class syllabus details.
 
 Class name:
-[name]
+CSE 237
 
 Credits:
-[number of credits the class is]
+3.0
 
 Grade Breakdown: (add as many categories as needed on separate lines)
 example: Quizzes, 10%
 
-[grading category], [percent weight]%
+Assignments, 25%
+Project, 75%
 
 
 Assignments: (add as many assignments as needed on separate lines)
@@ -17,4 +18,4 @@ Assignments: (add as many assignments as needed on separate lines)
 
 
 Current GPA:
-[GPA]/[highest possible GPA]
+3.79/4.0
