@@ -48,6 +48,7 @@ public class Parser {
 			alreadyParsed = false;
 			String line = sc.nextLine();
 			if(line.matches("[A-Za-z0-9_]+")) {
+				System.out.println(line);
 				if(line.equals("Credits:")||line.equals("Grade Breakdown: (add as many categories as needed on separate lines")||line.equals("	example: Quizzes, 10%")) {
 					alreadyParsed = true;
 				}
