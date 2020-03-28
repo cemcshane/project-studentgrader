@@ -70,7 +70,6 @@ public class Parser {
 						alreadyParsed = true;
 					}
 					else if(!alreadyParsed){
-						System.out.println(line);
 						gradeBreakdown = line.split(", ");
 						gradeBreakdown[1] = gradeBreakdown[1].substring(0, gradeBreakdown[1].length() - 1);
 						percentages.put(gradeBreakdown[0], Double.parseDouble(gradeBreakdown[1]));
