@@ -30,9 +30,9 @@ public class Parser {
 		@SuppressWarnings("resource")
 		Scanner sc = new Scanner(file);
 		sc.skip(Pattern.compile("Replace the bracketed statements with your class syllabus details."));
-		sc.skip(Pattern.compile("Class name:"));
-		sc.skip(Pattern.compile("Grade Breakdown: (add as many categories as needed on separate lines)"));
-		sc.skip(Pattern.compile("	example: Quizzes, 10%"));
+//		sc.skip(Pattern.compile("Class name:"));
+//		sc.skip(Pattern.compile("Grade Breakdown: (add as many categories as needed on separate lines)"));
+//		sc.skip(Pattern.compile("	example: Quizzes, 10%"));
 		boolean isGradeBreakdown = false;
 		boolean isAssignment = false;
 		boolean isGPA = false;
