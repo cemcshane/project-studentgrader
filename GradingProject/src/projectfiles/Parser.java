@@ -48,24 +48,27 @@ public class Parser {
 			alreadyParsed = false;
 			String line = sc.nextLine();
 			if(line.matches("[A-Za-z0-9_]+")) {
-				if(linesParsed==0) {
+				if(line.equals("Credits:")||line.equals("Grade Breakdown: (add as many categories as needed on separate lines")||line.equals("	example: Quizzes, 10%")) {
+					alreadyParsed = true;
+				}
+				if(linesParsed==0&&!alreadyParsed) {
 					className = line;
 					++linesParsed;
 					alreadyParsed = true;
 				}
-				if(linesParsed==1) {
+				if(linesParsed==1&&!alreadyParsed) {
 					credits = Double.parseDouble(line);
 					++linesParsed;
 					isGradeBreakdown = true;
 					alreadyParsed = true;
 				}
 				if(isGradeBreakdown && !alreadyParsed) {
-					if(line.matches("^Assignments: (add as many assignments as needed on separate lines)$")) {
+					if(line.equals("Assignments: (add as many assignments as needed on separate lines)")) {
 						isGradeBreakdown = false;
 						isAssignment = true;
 						alreadyParsed = true;
 					}
-					else {
+					else if(!alreadyParsed){
 						gradeBreakdown = line.split(", ");
 						percentages.put(gradeBreakdown[0], Double.parseDouble(gradeBreakdown[1]));
 						++linesParsed;
@@ -73,7 +76,7 @@ public class Parser {
 					}
 				}
 				if(isAssignment && !alreadyParsed) {
-					if(line.matches("^Current GPA:$")) {
+					if(line.equals("Current GPA:")) {
 						isAssignment = false;
 						isGPA = true;
 						alreadyParsed = true;
