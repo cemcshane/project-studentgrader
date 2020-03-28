@@ -48,7 +48,7 @@ public class Parser {
 			alreadyParsed = false;
 			String line = sc.nextLine();
 			if(!line.matches("[\t\r\n]")) {
-				System.out.println(line);
+				
 				if(line.equals("Credits:")||line.equals("Grade Breakdown: (add as many categories as needed on separate lines")||line.equals("	example: Quizzes, 10%")) {
 					alreadyParsed = true;
 				}
@@ -58,6 +58,7 @@ public class Parser {
 					alreadyParsed = true;
 				}
 				if(linesParsed==1 && !alreadyParsed) {
+					System.out.println(line);
 					credits = Double.parseDouble(line);
 					++linesParsed;
 					isGradeBreakdown = true;
