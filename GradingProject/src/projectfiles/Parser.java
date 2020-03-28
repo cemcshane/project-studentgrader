@@ -29,7 +29,7 @@ public class Parser {
 		File file = new File(args[0]);
 		@SuppressWarnings("resource")
 		Scanner sc = new Scanner(file);
-		sc.skip(Pattern.compile("\bReplace the bracketed statements with your class syllabus details.\b\bClass name:$^Grade Breakdown: (add as many categories as needed on separate lines)\b\b	example: Quizzes, 10%\b"));
+		sc.skip(Pattern.compile("\bReplace the bracketed statements with your class syllabus details.\b\bClass name:\b\bGrade Breakdown: (add as many categories as needed on separate lines)\b\b	example: Quizzes, 10%\b"));
 //		sc.skip(Pattern.compile(""));
 //		sc.skip(Pattern.compile("Grade Breakdown: (add as many categories as needed on separate lines)"));
 //		sc.skip(Pattern.compile("	example: Quizzes, 10%"));
