@@ -52,12 +52,12 @@ public class Parser {
 				if(line.equals("Credits:")||line.equals("Grade Breakdown: (add as many categories as needed on separate lines")||line.equals("	example: Quizzes, 10%")) {
 					alreadyParsed = true;
 				}
-				if(linesParsed==0&&!alreadyParsed) {
+				if(linesParsed==0 && !alreadyParsed) {
 					className = line;
 					++linesParsed;
 					alreadyParsed = true;
 				}
-				if(linesParsed==1&&!alreadyParsed) {
+				if(linesParsed==1 && !alreadyParsed) {
 					credits = Double.parseDouble(line);
 					++linesParsed;
 					isGradeBreakdown = true;
