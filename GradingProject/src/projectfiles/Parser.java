@@ -92,6 +92,7 @@ public class Parser {
 				}
 			}
 		}
+		sc.close();
 		System.out.println("Class name: " + className);
 		System.out.println("Credit value: " + credits);
 		System.out.println("Grading Breakdown:");
