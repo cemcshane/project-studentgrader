@@ -49,7 +49,7 @@ public class Parser {
 			String line = sc.nextLine();
 			if(!line.matches("")) {
 				
-				if(line.equals("Credits:")||line.equals("Grade Breakdown: (add as many categories as needed on separate lines")||line.equals("	example: Quizzes, 10%")) {
+				if(line.contains("Credits:")||line.contains("Grade Breakdown: (add as many categories as needed on separate lines")||line.contains("	example: Quizzes, 10%")) {
 					alreadyParsed = true;
 				}
 				if(linesParsed==0 && !alreadyParsed) {
@@ -73,6 +73,7 @@ public class Parser {
 					else if(!alreadyParsed){
 						System.out.println(line);
 						gradeBreakdown = line.split(", ");
+						gradeBreakdown[1] = gradeBreakdown[1].substring(0, gradeBreakdown[1].length() - 1);
 						percentages.put(gradeBreakdown[0], Double.parseDouble(gradeBreakdown[1]));
 						++linesParsed;
 						alreadyParsed = true;
