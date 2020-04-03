@@ -4,6 +4,8 @@
     variables things will be stored in classes.
 3. Can store assignemtns yet and no error managment stuff (if file isn't right format), no try catch blocks
 4. User will input class and grade information into input_file.txt
+   Clone the repository to your machine via the command line. 
+   cd into the projectfiles folder. (cd GradingProject, cd src, cd projectfiles)
    java Parser.java input_file.txt
    If you don't want to make you own file you can use testfile.txt instead of input_file.txt
    
