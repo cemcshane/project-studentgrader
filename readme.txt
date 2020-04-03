@@ -1,8 +1,8 @@
-1. At this point a student can input all the information from the syllabus ino a file, grades can be inputed and stored but only while the 
-    program is running
-2. Overall class grades in a course need to be calculated from individual assignments in that course. Instead of storing everything in
-    variables things will be stored in classes.
-3. Can store assignemtns yet and no error managment stuff (if file isn't right format), no try catch blocks
+1.  As a student I can input my assignments and grades and have them locally stored 
+2. As a student I want to be able to get my overall grades in a course from my inputed grades on indivudual assignments
+    As a student I want to be able to access my saved grades and not just store them as local variables
+    As a student I want to be corrected with helpful messages when I incorrectly input information into the program
+3. It doesn't properly store the assignments or print that out, but that's also ot fully implemented
 4. User will input class and grade information into input_file.txt
    Clone the repository to your machine via the command line. 
    cd into the projectfiles folder. (cd GradingProject, cd src, cd projectfiles)
