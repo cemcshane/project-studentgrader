@@ -11,6 +11,7 @@ public class Assignment {
 		this.pointsAwarded = awarded;
 		this.pointsPossible = possible;
 		this.category = category;
+		this.category.assignments.push(this);
 	}
 	
 	public double gradeAssignment() {
