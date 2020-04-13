@@ -1,0 +1,24 @@
+Replace the bracketed statements with your class syllabus details.
+
+Class name:
+Data Structures and Algorithms
+
+Credits:
+3.0
+
+Grade Breakdown: (add as many categories as needed on separate lines)
+example: Quizzes, 10%
+
+Assignments, 25%
+Studios, 15%
+Exams, 40%
+Your Mom, 19%
+Course Eval, 1%
+
+
+Assignments: (add as many assignments as needed on separate lines)
+[grading category], [points awarded], [total points possible]
+
+
+Current GPA:
+3.79/4.0

@@ -1,0 +1,21 @@
+Replace the bracketed statements with your class syllabus details.
+
+Class name:
+CSE 237
+
+Credits:
+3.0
+
+Grade Breakdown: (add as many categories as needed on separate lines)
+example: Quizzes, 10%
+
+Assignments, 25%
+Project, 75%
+
+
+Assignments: (add as many assignments as needed on separate lines)
+[grading category], [points awarded], [total points possible]
+
+
+Current GPA:
+3.79/4.0
