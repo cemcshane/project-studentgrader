@@ -17,4 +17,10 @@ public class Assignment {
 	public double gradeAssignment() {
 		return pointsAwarded/pointsPossible;
 	}
+
+	@Override
+	public String toString() {
+		return category.name + " assignment: " + pointsAwarded + "/" + pointsPossible;
+	}
+	
 }

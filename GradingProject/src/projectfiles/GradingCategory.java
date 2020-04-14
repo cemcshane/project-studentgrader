@@ -20,6 +20,10 @@ public class GradingCategory {
 		return points;
 	}
 	
+	public void addAssignment(Assignment a) {
+		this.assignments.add(a);
+	}
+	
 	private double pointsPossible() {
 		double possiblePoints = 0;
 		for(Assignment a : assignments) {
@@ -34,5 +38,9 @@ public class GradingCategory {
 			awardedPoints += a.pointsAwarded;
 		}
 		return awardedPoints;
+	}
+	@Override
+	public String toString() {
+		return name + ", " + percentage + "%";
 	}
 }
