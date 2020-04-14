@@ -43,7 +43,7 @@ public class Parser {
 		return null;
 	}
 	
-	public static void main(String[] args) throws FileNotFoundException { //might need to change to try/catch 								  //around the scanner declaration
+	public static void main(String[] args){ //might need to change to try/catch 								  //around the scanner declaration
 
 	}
 
