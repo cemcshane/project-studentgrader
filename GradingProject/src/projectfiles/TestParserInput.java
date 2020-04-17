@@ -9,6 +9,7 @@ class TestParserInput {
 	Parser input = new Parser();
 	GradingCategory category = new GradingCategory("name", 25);
 	
+	
 	@Test
 	void testChangeName() {
 		input.changeName("CSE 237");
@@ -38,6 +39,4 @@ class TestParserInput {
 		assertNull(input.getCategory(""));
 	}
 	
-	
-
 }
