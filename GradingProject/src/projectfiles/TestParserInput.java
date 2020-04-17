@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 class TestParserInput {
 
 	Parser input = new Parser();
-	GradingCategory category = new GradingCategory("name", 25);
+	GradingCategory category = new GradingCategory("name", 50);
 	
 	
 	@Test
