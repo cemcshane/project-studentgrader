@@ -1,111 +1,57 @@
 package projectfiles;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.HashMap;
-import java.util.Scanner;
-import java.util.regex.Pattern;
+import java.util.LinkedList;
 
 public class Parser {
-//	Replace the bracketed statements with your class syllabus details.    
+	public String className;
+	public double credits;
+	public LinkedList<GradingCategory> criteria;
 	
-//	Class name:
-//	[name]    
+	public Parser() {
+		this.className = "";
+		this.credits = 0;
+		this.criteria = new LinkedList<GradingCategory>();
+	}
 	
-//  Credits:                                                                                                                
-//	[number of credits the class is] 
+	public void changeName(String name) {
+		this.className = name;
+	}
 	
-//	Grade Breakdown: (add as many categories as needed on separate lines)                                                   
-//		example: Quizzes, 10%                                                                                                   
-//	[grading category], [percent weight]%   
+	public void changeCredits(double credits) {
+		this.credits = credits;
+	}
 	
-//	Assignments: (add as many assignments as needed on separate lines)
-//	[grading category], [points awarded], [total points possible]       
+	public void addCategory(GradingCategory category) {
+		this.criteria.add(category);
+	}
 	
-//	Current GPA:                                                                                                            
-//	[GPA]/[highest possible GPA] 
-	public static void main(String[] args) throws FileNotFoundException { //might need to change to try/catch 
-		// TODO Auto-generated method stub								  //around the scanner declaration
-		File file = new File(args[0]);
-		@SuppressWarnings("resource")
-		Scanner sc = new Scanner(file);
-		sc.skip(Pattern.compile("Replace the bracketed statements with your class syllabus details.\n\nClass name:"));
-//		sc.skip(Pattern.compile(""));
-//		sc.skip(Pattern.compile("Grade Breakdown: (add as many categories as needed on separate lines)"));
-//		sc.skip(Pattern.compile("	example: Quizzes, 10%"));
-		boolean isGradeBreakdown = false;
-		boolean isAssignment = false;
-		boolean isGPA = false;
-		boolean alreadyParsed = false;
-		int linesParsed = 0;
-		String className = "";
-		double credits = 0.0;
-		String [] gradeBreakdown = new String[3];
-		HashMap<String, Double> percentages = new HashMap<String, Double>();
-		double gpa = 0.0;
-		double possibleGPA = 0.0;
-		while(sc.hasNextLine()) {
-			alreadyParsed = false;
-			String line = sc.nextLine();
-			if(!line.matches("")) {
-				
-				if(line.contains("Credits:")||line.contains("Grade Breakdown: (add as many categories as needed on separate lines")||line.contains("example: Quizzes, 10%")) {
-					alreadyParsed = true;
-				}
-				if(linesParsed==0 && !alreadyParsed) {
-					className = line;
-					++linesParsed;
-					alreadyParsed = true;
-				}
-				if(linesParsed==1 && !alreadyParsed) {
-					credits = Double.parseDouble(line);
-					++linesParsed;
-					isGradeBreakdown = true;
-					alreadyParsed = true;
-				}
-				if(isGradeBreakdown && !alreadyParsed) {
-					if(line.equals("Assignments: (add as many assignments as needed on separate lines)")) {
-						isGradeBreakdown = false;
-						isAssignment = true;
-						alreadyParsed = true;
-					}
-					else if(!alreadyParsed){
-						gradeBreakdown = line.split(", ");
-						gradeBreakdown[1] = gradeBreakdown[1].substring(0, gradeBreakdown[1].length() - 1);
-						percentages.put(gradeBreakdown[0], Double.parseDouble(gradeBreakdown[1]));
-						++linesParsed;
-						alreadyParsed = true;
-					}
-				}
-				if(isAssignment && !alreadyParsed) {
-					if(line.equals("Current GPA:")) {
-						isAssignment = false;
-						isGPA = true;
-						alreadyParsed = true;
-					}
-					else {
-						//need to figure out how to store this
-						++linesParsed;
-						alreadyParsed = true;
-					}
-				}
-				if(isGPA && !alreadyParsed) {
-					String [] splitGPA = line.split("/");
-					gpa = Double.parseDouble(splitGPA[0]);
-					possibleGPA = Double.parseDouble(splitGPA[1]);
-					++linesParsed;
-				}
+	public void addAssignment(String category, Assignment a) {
+		for(GradingCategory g : this.criteria) {
+			if(g.name==category) {
+				g.addAssignment(a);
+				break;
 			}
 		}
-		sc.close();
-		System.out.println("Class name: " + className);
-		System.out.println("Credit value: " + credits);
-		System.out.println("Grading Breakdown:");
-		for(HashMap.Entry<String, Double> entry : percentages.entrySet()) {
-			System.out.println(entry.getKey() + ": " + entry.getValue() + "%");
-		}
-		System.out.println();
-		System.out.println("Current GPA: " + gpa + "/" + possibleGPA);
 	}
+	
+	public GradingCategory getCategory(String name) {
+		for(GradingCategory g : this.criteria) {
+			if(g.name.equals(name)) {
+				return g;
+			}
+		}
+		return null;
+	}
+	
+	public static void main(String[] args){ //might need to change to try/catch 								  //around the scanner declaration
+
+	}
+
+	@Override
+	public String toString() {
+		return "Class: " + className + "\nCredits: " + credits + "\nGrading Criteria: " + criteria +"\nAssignments:\n" + criteria.getFirst().assignments.toString() + "\n" + criteria.getLast().assignments.toString();
+	}
+	
+	
 
 }
