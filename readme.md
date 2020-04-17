@@ -1,4 +1,4 @@
-CSE237 Final Project - StudentGrader
+<h1> CSE237 Final Project - StudentGrader </h1>
 
 1.  As a student I can input my assignments and grades and have them locally stored 
 
