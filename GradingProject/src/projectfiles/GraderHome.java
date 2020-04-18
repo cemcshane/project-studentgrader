@@ -131,12 +131,10 @@ public class GraderHome {
 				double credits = Double.parseDouble(credTextField.getText());
 				grader.changeCredits(credits);
 				grader.changeName(className);
-				System.out.println(grader.toString()); 
-				
+				//System.out.println(grader.toString()); 
 				//print out final result from the Calculations
-				
-				
-				
+				Calculations calculator = new Calculations(grader);
+				System.out.println("Your grade is: " + calculator.finalCalculation() + "% " + calculator.letterGrade());
 			}
 		});
 		springLayout.putConstraint(SpringLayout.SOUTH, btnSubmitInfo, -23, SpringLayout.SOUTH, frame.getContentPane());

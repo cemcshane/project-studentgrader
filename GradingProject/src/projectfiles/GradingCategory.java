@@ -39,6 +39,7 @@ public class GradingCategory {
 		}
 		return awardedPoints;
 	}
+	
 	@Override
 	public String toString() {
 		return name + ", " + percentage + "%";
