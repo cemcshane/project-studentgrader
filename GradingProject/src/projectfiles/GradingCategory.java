@@ -15,6 +15,7 @@ public class GradingCategory {
 		this.assignments = new LinkedList<Assignment>();
 	}
 	
+	//how many points given for that category (up to 100)
 	public double categoryPoints() {
 		double points = (pointsAwarded()/pointsPossible())*percentage;
 		return points;
