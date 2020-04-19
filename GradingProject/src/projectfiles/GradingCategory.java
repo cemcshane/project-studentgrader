@@ -1,5 +1,6 @@
 package projectfiles;
 
+import java.awt.Component;
 import java.util.LinkedList;
 
 public class GradingCategory {

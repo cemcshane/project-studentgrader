@@ -1,5 +1,6 @@
 package projectfiles;
 
+import javax.swing.ComboBoxModel;
 import javax.swing.DefaultListModel;
 
 public class GradingCatController {
@@ -17,4 +18,5 @@ public class GradingCatController {
 	public DefaultListModel<GradingCategory> getCriteria(){
 		return this.criteria;
 	}
+	
 }
