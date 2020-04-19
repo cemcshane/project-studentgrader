@@ -14,55 +14,56 @@ public class Calculations {
 		this.name = classInfo.className;
 		this.credits = classInfo.credits;
 	}
+	
+		
 
-
-
+	double sum = 0;
 	public double finalCalculation() {
 		for (GradingCategory cat : categories) { //cat is each individual category/criteria
-			cat.categoryPoints();
-			points++; //why is points giving me an error here? isn't it part of the categoryPoints method?
+			sum += cat.categoryPoints();
+			 //why is points giving me an error here? isn't it part of the categoryPoints method?
 
 		}
-		return points;
+		return sum;
 	}
 
 
 	//Make method that returns a letter grade based on the finalCalculaton()
 	public String letterGrade() {
-		if (points == 100 || points > 97) {
+		if (sum == 100 || sum > 97) {
 			return "A+";	
 		}
-		if (points < 97 && points > 93) {
+		if (sum < 97 && sum > 93) {
 			return "A" ;
 		}
-		if (points < 93 && points > 90) {
+		if (sum < 93 && sum > 90) {
 			return "A-";	
 		}
-		if (points < 90 && points > 87) {
+		if (sum < 90 && sum > 87) {
 			return "B+";	
 		}
-		if (points < 87 && points > 83) {
+		if (sum < 87 && sum > 83) {
 			return "B";	
 		}
-		if (points < 83 && points > 80) {
+		if (sum < 83 && sum > 80) {
 			return "B-";	
 		}
-		if (points < 80 && points > 77) {
+		if (sum < 80 && sum > 77) {
 			return "C+";	
 		}
-		if (points < 77 && points > 73) {
+		if (sum < 77 && sum > 73) {
 			return "C";	
 		}
-		if (points < 73 && points > 70) {
+		if (sum < 73 && sum > 70) {
 			return "C-";	
 		}
-		if (points < 70 && points > 67) {
+		if (sum < 70 && sum > 67) {
 			return "D+";	
 		}
-		if (points < 67 && points > 63) {
+		if (sum < 67 && sum > 63) {
 			return "D";	
 		}
-		if (points < 63 && points > 60) {
+		if (sum < 63 && sum > 60) {
 			return "D-";	
 		}
 		else {
