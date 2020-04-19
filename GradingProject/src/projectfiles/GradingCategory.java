@@ -18,6 +18,9 @@ public class GradingCategory {
 	
 	//how many points given for that category (up to 100)
 	public double categoryPoints() {
+		if(pointsPossible()==0) {
+			return percentage;
+		}
 		double points = (pointsAwarded()/pointsPossible())*percentage;
 		return points;
 	}

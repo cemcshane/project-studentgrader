@@ -1,6 +1,5 @@
 package projectfiles;
 
-import javax.swing.ComboBoxModel;
 import javax.swing.DefaultListModel;
 
 public class GradingCatController {
@@ -19,4 +18,14 @@ public class GradingCatController {
 		return this.criteria;
 	}
 	
+	public boolean check100() {
+		int sumPercentages = 0;
+		for(int i=0; i<criteria.getSize(); ++i) {
+			sumPercentages += criteria.get(i).percentage;
+		}
+		if(sumPercentages!=100) {
+			return false;
+		}
+		return true;
+	}
 }
