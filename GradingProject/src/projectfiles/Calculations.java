@@ -21,7 +21,7 @@ public class Calculations {
 	public double finalCalculation() {
 		for (GradingCategory cat : categories) { //cat is each individual category/criteria
 			sum += cat.categoryPoints();
-			 //why is points giving me an error here? isn't it part of the categoryPoints method?
+			 
 
 		}
 		return sum;
