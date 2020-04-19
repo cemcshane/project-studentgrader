@@ -1,8 +1,11 @@
-package projectfiles;
+package projectfiles.test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
+
+import projectfiles.Assignment;
+import projectfiles.GradingCategory;
 
 class TestGradingCategory {
 
