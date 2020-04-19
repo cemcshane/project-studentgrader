@@ -13,11 +13,8 @@
 <p> Mainly, we want to make sure all of the calculations are operating correctly and the user is receiving the correct grade for the course based on their category and assignment inputs. We also want to write a Bash script so that the user can easily run the program via the command line.
 
 <h2> How to access our program:</h2>
-4. Clone the repository to your machine via the command line. 
-   Open project-studentgrader folder 
-   User will input class and grade information into input_file.txt (GradingProject > src > projectfiles)
-   cd into the projectfiles folder. (cd GradingProject, cd src, cd projectfiles) via the command line
-   java Parser.java input_file.txt (or use java Parser.java testfile.txt to test using our pre-inputed data)
-
+<ol>
+   <li> Clone the repository to your device via the command line. </li>
+</ol>
    
    
