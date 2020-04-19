@@ -8,9 +8,11 @@ import javax.swing.JList;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import java.awt.Font;
+
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.JComboBox;
 
 public class GraderHome {
 
@@ -19,7 +21,6 @@ public class GraderHome {
 	private JTextField credTextField;
 	private JTextField critTextField1;
 	private JTextField percent;
-	private JTextField critTextField2;
 	private JTextField ptsReceived;
 	private JTextField ptsPossible;
 
@@ -59,12 +60,14 @@ public class GraderHome {
 		SpringLayout springLayout = new SpringLayout();
 		frame.getContentPane().setLayout(springLayout);
 		
-		JList assignmentList = new JList(assignmentController.getAssignments());
+		
+		
+		JList<Assignment> assignmentList = new JList<>(assignmentController.getAssignments());
 		springLayout.putConstraint(SpringLayout.SOUTH, assignmentList, -83, SpringLayout.SOUTH, frame.getContentPane());
 		springLayout.putConstraint(SpringLayout.EAST, assignmentList, -108, SpringLayout.EAST, frame.getContentPane());
 		frame.getContentPane().add(assignmentList);
 		
-		JList gradingCrit = new JList(critController.getCriteria());
+		JList<GradingCategory> gradingCrit = new JList<>(critController.getCriteria());
 		springLayout.putConstraint(SpringLayout.EAST, gradingCrit, -108, SpringLayout.EAST, frame.getContentPane());
 		springLayout.putConstraint(SpringLayout.WEST, assignmentList, 0, SpringLayout.WEST, gradingCrit);
 		springLayout.putConstraint(SpringLayout.SOUTH, gradingCrit, -287, SpringLayout.SOUTH, frame.getContentPane());
@@ -127,14 +130,23 @@ public class GraderHome {
 		btnSubmitInfo.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				String className = nameTextField.getText();
-				double credits = Double.parseDouble(credTextField.getText());
-				grader.changeCredits(credits);
-				grader.changeName(className);
-				//System.out.println(grader.toString()); 
-				//print out final result from the Calculations
-				Calculations calculator = new Calculations(grader);
-				System.out.println("Your grade is: " + calculator.finalCalculation() + "% " + calculator.letterGrade());
+				if(critController.check100()) {
+					try {
+						String className = nameTextField.getText();
+						double credits = Double.parseDouble(credTextField.getText());
+						grader.changeCredits(credits);
+						grader.changeName(className);
+						//print out final result from the Calculations
+						Calculations calculator = new Calculations(grader);
+						System.out.println("Grade for " + grader.className +": " + calculator.finalCalculation() + "% " + calculator.letterGrade());	
+					}
+					catch(Exception exception) {
+						System.out.println("Credits field is not a number.");
+					}
+				}
+				else {
+					System.out.println("Your grading criteria do not add up to 100%");
+				}
 			}
 		});
 		springLayout.putConstraint(SpringLayout.SOUTH, btnSubmitInfo, -23, SpringLayout.SOUTH, frame.getContentPane());
@@ -177,15 +189,7 @@ public class GraderHome {
 		frame.getContentPane().add(label);
 		
 		JButton btnAdd = new JButton("Add");
-		btnAdd.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				String criterionName = critTextField1.getText();
-				int percentage = Integer.parseInt(percent.getText());
-				grader.addCategory(new GradingCategory(criterionName, percentage));
-				critController.addCriterion(new GradingCategory(criterionName, percentage));
-			}
-		});
+
 		springLayout.putConstraint(SpringLayout.NORTH, btnAdd, -3, SpringLayout.NORTH, assignmentList);
 		springLayout.putConstraint(SpringLayout.WEST, btnAdd, 59, SpringLayout.WEST, frame.getContentPane());
 		frame.getContentPane().add(btnAdd);
@@ -196,17 +200,10 @@ public class GraderHome {
 		frame.getContentPane().add(lblAssignment);
 		
 		JLabel lblGradingCriterion = new JLabel("Grading criterion:");
+		springLayout.putConstraint(SpringLayout.NORTH, lblGradingCriterion, 379, SpringLayout.NORTH, frame.getContentPane());
+		springLayout.putConstraint(SpringLayout.SOUTH, lblAssignment, -19, SpringLayout.NORTH, lblGradingCriterion);
 		springLayout.putConstraint(SpringLayout.WEST, lblGradingCriterion, 0, SpringLayout.WEST, lblName);
 		frame.getContentPane().add(lblGradingCriterion);
-		
-		critTextField2 = new JTextField();
-		springLayout.putConstraint(SpringLayout.NORTH, lblGradingCriterion, 3, SpringLayout.NORTH, critTextField2);
-		springLayout.putConstraint(SpringLayout.WEST, critTextField2, 190, SpringLayout.WEST, frame.getContentPane());
-		springLayout.putConstraint(SpringLayout.SOUTH, lblAssignment, -16, SpringLayout.NORTH, critTextField2);
-		springLayout.putConstraint(SpringLayout.NORTH, critTextField2, 376, SpringLayout.NORTH, frame.getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, critTextField2, -16, SpringLayout.EAST, lblGradingCriterioneg);
-		frame.getContentPane().add(critTextField2);
-		critTextField2.setColumns(10);
 		
 		JLabel lblPointsReceived = new JLabel("Points received:");
 		springLayout.putConstraint(SpringLayout.NORTH, lblPointsReceived, 13, SpringLayout.SOUTH, lblGradingCriterion);
@@ -218,8 +215,27 @@ public class GraderHome {
 		springLayout.putConstraint(SpringLayout.SOUTH, lblPointsPossible, 0, SpringLayout.SOUTH, assignmentList);
 		frame.getContentPane().add(lblPointsPossible);
 		
+		JComboBox<String> comboBox = new JComboBox<>();
+		springLayout.putConstraint(SpringLayout.NORTH, comboBox, -3, SpringLayout.NORTH, lblGradingCriterion);
+		springLayout.putConstraint(SpringLayout.WEST, comboBox, 6, SpringLayout.EAST, lblGradingCriterion);
+		springLayout.putConstraint(SpringLayout.EAST, comboBox, 115, SpringLayout.EAST, label);
+		comboBox.setToolTipText("");
+		frame.getContentPane().add(comboBox);		 
+		
+		btnAdd.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				String criterionName = critTextField1.getText();
+				int percentage = Integer.parseInt(percent.getText());
+				GradingCategory cat = new GradingCategory(criterionName, percentage);
+				grader.addCategory(cat);
+				critController.addCriterion(cat);
+				comboBox.addItem(cat.name);
+			}
+		});	
+		
 		ptsReceived = new JTextField();
-		springLayout.putConstraint(SpringLayout.NORTH, ptsReceived, 7, SpringLayout.SOUTH, critTextField2);
+		springLayout.putConstraint(SpringLayout.NORTH, ptsReceived, 10, SpringLayout.SOUTH, lblGradingCriterion);
 		springLayout.putConstraint(SpringLayout.WEST, ptsReceived, 6, SpringLayout.EAST, lblPointsReceived);
 		springLayout.putConstraint(SpringLayout.EAST, ptsReceived, 61, SpringLayout.EAST, lblPointsReceived);
 		frame.getContentPane().add(ptsReceived);
@@ -232,20 +248,35 @@ public class GraderHome {
 		frame.getContentPane().add(ptsPossible);
 		ptsPossible.setColumns(10);
 		
+	
+		
 		JButton btnAdd_1 = new JButton("Add");
 		springLayout.putConstraint(SpringLayout.WEST, btnSubmitInfo, 209, SpringLayout.EAST, btnAdd_1);
 		btnAdd_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				String criterionName = critTextField2.getText();
-				double pntsPoss = Double.parseDouble(ptsPossible.getText());
-				double pntsGot = Double.parseDouble(ptsReceived.getText());
-				Assignment a = new Assignment(pntsGot, pntsPoss, grader.getCategory(criterionName));
-				assignmentController.addAssignment(a);
+				String criterionName = (String) comboBox.getSelectedItem();
+				try {
+					double pntsPoss = Double.parseDouble(ptsPossible.getText());
+					double pntsGot = Double.parseDouble(ptsReceived.getText());
+					if(pntsPoss!=0) {
+						Assignment a = new Assignment(pntsGot, pntsPoss, grader.getCategory(criterionName));
+						assignmentController.addAssignment(a);					
+					}
+					else {
+						System.out.println("Your assignment cannot be out of 0 points.");
+					}				
+				}
+				//sanitize input
+				catch (Exception e) {
+					System.out.println("Invalid input. Make sure field isn't left blank and that number values are used if necessary.");
+				}
 			}
 		});
 		springLayout.putConstraint(SpringLayout.NORTH, btnAdd_1, 18, SpringLayout.SOUTH, lblPointsPossible);
 		springLayout.putConstraint(SpringLayout.WEST, btnAdd_1, 0, SpringLayout.WEST, lblName);
 		frame.getContentPane().add(btnAdd_1);
+		
+
 	}
 }
