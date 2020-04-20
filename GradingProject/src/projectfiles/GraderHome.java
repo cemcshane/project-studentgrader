@@ -3,7 +3,6 @@ package projectfiles;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
-import javax.swing.SpringLayout;
 import javax.swing.JList;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -55,78 +54,62 @@ public class GraderHome {
 		GradingCatController critController = new GradingCatController();
 		AssignmentController assignmentController = new AssignmentController();
 		frame = new JFrame();
+		frame.setResizable(false);
 		frame.setBounds(100, 100, 849, 604);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		SpringLayout springLayout = new SpringLayout();
-		frame.getContentPane().setLayout(springLayout);
+		frame.getContentPane().setLayout(null);
 		
 		
 		
 		JList<Assignment> assignmentList = new JList<>(assignmentController.getAssignments());
-		springLayout.putConstraint(SpringLayout.SOUTH, assignmentList, -83, SpringLayout.SOUTH, frame.getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, assignmentList, -108, SpringLayout.EAST, frame.getContentPane());
+		assignmentList.setBounds(457, 306, 270, 178);
 		frame.getContentPane().add(assignmentList);
 		
 		JList<GradingCategory> gradingCrit = new JList<>(critController.getCriteria());
-		springLayout.putConstraint(SpringLayout.EAST, gradingCrit, -108, SpringLayout.EAST, frame.getContentPane());
-		springLayout.putConstraint(SpringLayout.WEST, assignmentList, 0, SpringLayout.WEST, gradingCrit);
-		springLayout.putConstraint(SpringLayout.SOUTH, gradingCrit, -287, SpringLayout.SOUTH, frame.getContentPane());
+		gradingCrit.setBounds(457, 92, 270, 188);
 		frame.getContentPane().add(gradingCrit);
 		
 		JLabel lblAddedAssignments = new JLabel("Added Assignments");
-		springLayout.putConstraint(SpringLayout.NORTH, assignmentList, 6, SpringLayout.SOUTH, lblAddedAssignments);
-		springLayout.putConstraint(SpringLayout.NORTH, lblAddedAssignments, 6, SpringLayout.SOUTH, gradingCrit);
-		springLayout.putConstraint(SpringLayout.EAST, lblAddedAssignments, -164, SpringLayout.EAST, frame.getContentPane());
+		lblAddedAssignments.setBounds(538, 286, 120, 14);
 		lblAddedAssignments.setLabelFor(lblAddedAssignments);
 		frame.getContentPane().add(lblAddedAssignments);
 		
 		JLabel lblGradingCriteria = new JLabel("Grading Criteria");
-		springLayout.putConstraint(SpringLayout.NORTH, gradingCrit, 4, SpringLayout.SOUTH, lblGradingCriteria);
+		lblGradingCriteria.setBounds(549, 72, 90, 14);
 		lblGradingCriteria.setLabelFor(gradingCrit);
-		springLayout.putConstraint(SpringLayout.EAST, lblGradingCriteria, -178, SpringLayout.EAST, frame.getContentPane());
 		frame.getContentPane().add(lblGradingCriteria);
 		
 		nameTextField = new JTextField();
-		springLayout.putConstraint(SpringLayout.NORTH, nameTextField, -2, SpringLayout.NORTH, gradingCrit);
-		springLayout.putConstraint(SpringLayout.EAST, nameTextField, -145, SpringLayout.WEST, gradingCrit);
+		nameTextField.setBounds(157, 90, 169, 20);
 		frame.getContentPane().add(nameTextField);
 		nameTextField.setColumns(10);
 		
 		JLabel lblName = new JLabel("Class Name:");
-		springLayout.putConstraint(SpringLayout.WEST, nameTextField, 6, SpringLayout.EAST, lblName);
-		springLayout.putConstraint(SpringLayout.NORTH, lblName, 1, SpringLayout.NORTH, gradingCrit);
+		lblName.setBounds(75, 93, 75, 14);
 		lblName.setLabelFor(nameTextField);
 		frame.getContentPane().add(lblName);
 		
 		JLabel lblWelcomeToThe = new JLabel("Welcome to the Automatic Grader!");
-		springLayout.putConstraint(SpringLayout.NORTH, lblWelcomeToThe, 0, SpringLayout.NORTH, frame.getContentPane());
-		springLayout.putConstraint(SpringLayout.WEST, lblWelcomeToThe, 251, SpringLayout.WEST, frame.getContentPane());
-		springLayout.putConstraint(SpringLayout.SOUTH, lblWelcomeToThe, 40, SpringLayout.NORTH, frame.getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, lblWelcomeToThe, -260, SpringLayout.EAST, frame.getContentPane());
+		lblWelcomeToThe.setBounds(251, 0, 324, 40);
 		lblWelcomeToThe.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		frame.getContentPane().add(lblWelcomeToThe);
 		
 		JLabel lblPleaseEnterYour = new JLabel("Please enter your info in the displayed fields.");
-		springLayout.putConstraint(SpringLayout.NORTH, lblGradingCriteria, 18, SpringLayout.SOUTH, lblPleaseEnterYour);
-		springLayout.putConstraint(SpringLayout.NORTH, lblPleaseEnterYour, 2, SpringLayout.SOUTH, lblWelcomeToThe);
-		springLayout.putConstraint(SpringLayout.WEST, lblPleaseEnterYour, 0, SpringLayout.WEST, lblWelcomeToThe);
+		lblPleaseEnterYour.setBounds(290, 37, 300, 14);
 		frame.getContentPane().add(lblPleaseEnterYour);
 		
 		credTextField = new JTextField();
-		springLayout.putConstraint(SpringLayout.NORTH, credTextField, 8, SpringLayout.SOUTH, nameTextField);
-		springLayout.putConstraint(SpringLayout.WEST, credTextField, 119, SpringLayout.WEST, frame.getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, credTextField, -305, SpringLayout.WEST, gradingCrit);
+		credTextField.setBounds(138, 118, 33, 20);
 		frame.getContentPane().add(credTextField);
 		credTextField.setColumns(10);
 		
 		JLabel lblCredits = new JLabel("Credits:");
-		springLayout.putConstraint(SpringLayout.EAST, lblCredits, -5, SpringLayout.WEST, credTextField);
-		springLayout.putConstraint(SpringLayout.WEST, lblName, 0, SpringLayout.WEST, lblCredits);
-		springLayout.putConstraint(SpringLayout.NORTH, lblCredits, 3, SpringLayout.NORTH, credTextField);
+		lblCredits.setBounds(75, 121, 50, 14);
 		lblCredits.setLabelFor(credTextField);
 		frame.getContentPane().add(lblCredits);
 		
 		JButton btnSubmitInfo = new JButton("Submit your info!");
+		btnSubmitInfo.setBounds(335, 521, 130, 23);
 		btnSubmitInfo.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -149,76 +132,58 @@ public class GraderHome {
 				}
 			}
 		});
-		springLayout.putConstraint(SpringLayout.SOUTH, btnSubmitInfo, -23, SpringLayout.SOUTH, frame.getContentPane());
 		frame.getContentPane().add(btnSubmitInfo);
 		
 		JLabel lblGradingCriterioneg = new JLabel("Grading Criteria (e.g. Quizzes, 10%)");
-		springLayout.putConstraint(SpringLayout.WEST, gradingCrit, 106, SpringLayout.EAST, lblGradingCriterioneg);
-		springLayout.putConstraint(SpringLayout.WEST, lblGradingCriterioneg, 60, SpringLayout.WEST, frame.getContentPane());
+		lblGradingCriterioneg.setBounds(60, 187, 363, 20);
 		lblGradingCriterioneg.setFont(new Font("Tahoma", Font.BOLD, 16));
 		frame.getContentPane().add(lblGradingCriterioneg);
 		
 		JLabel lblCriterion = new JLabel("Criterion:");
+		lblCriterion.setBounds(75, 221, 60, 14);
 		frame.getContentPane().add(lblCriterion);
 		
 		critTextField1 = new JTextField();
-		springLayout.putConstraint(SpringLayout.WEST, critTextField1, 132, SpringLayout.WEST, frame.getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, lblCriterion, -6, SpringLayout.WEST, critTextField1);
-		springLayout.putConstraint(SpringLayout.NORTH, critTextField1, 218, SpringLayout.NORTH, frame.getContentPane());
-		springLayout.putConstraint(SpringLayout.SOUTH, lblGradingCriterioneg, -11, SpringLayout.NORTH, critTextField1);
-		springLayout.putConstraint(SpringLayout.EAST, critTextField1, -166, SpringLayout.WEST, gradingCrit);
-		springLayout.putConstraint(SpringLayout.NORTH, lblCriterion, 3, SpringLayout.NORTH, critTextField1);
+		critTextField1.setBounds(143, 218, 159, 20);
 		frame.getContentPane().add(critTextField1);
 		critTextField1.setColumns(10);
 		
 		JLabel lblPercentage = new JLabel("Percentage:");
+		lblPercentage.setBounds(75, 247, 70, 14);
 		frame.getContentPane().add(lblPercentage);
 		
 		percent = new JTextField();
-		springLayout.putConstraint(SpringLayout.NORTH, lblPercentage, 3, SpringLayout.NORTH, percent);
-		springLayout.putConstraint(SpringLayout.EAST, lblPercentage, -3, SpringLayout.WEST, percent);
-		springLayout.putConstraint(SpringLayout.NORTH, percent, 6, SpringLayout.SOUTH, critTextField1);
-		springLayout.putConstraint(SpringLayout.WEST, percent, 145, SpringLayout.WEST, frame.getContentPane());
+		percent.setBounds(153, 244, 49, 20);
 		frame.getContentPane().add(percent);
 		percent.setColumns(10);
 		
 		JLabel label = new JLabel("%");
-		springLayout.putConstraint(SpringLayout.EAST, percent, -6, SpringLayout.WEST, label);
-		springLayout.putConstraint(SpringLayout.NORTH, label, 6, SpringLayout.SOUTH, critTextField1);
-		springLayout.putConstraint(SpringLayout.WEST, label, 200, SpringLayout.WEST, frame.getContentPane());
+		label.setBounds(212, 247, 11, 14);
 		frame.getContentPane().add(label);
 		
 		JButton btnAdd = new JButton("Add");
-
-		springLayout.putConstraint(SpringLayout.NORTH, btnAdd, -3, SpringLayout.NORTH, assignmentList);
-		springLayout.putConstraint(SpringLayout.WEST, btnAdd, 59, SpringLayout.WEST, frame.getContentPane());
+		btnAdd.setBounds(75, 282, 60, 23);
 		frame.getContentPane().add(btnAdd);
 		
 		JLabel lblAssignment = new JLabel("Assignments (e.g. Exams, 95/100)");
-		springLayout.putConstraint(SpringLayout.WEST, lblAssignment, 59, SpringLayout.WEST, frame.getContentPane());
+		lblAssignment.setBounds(59, 340, 353, 20);
 		lblAssignment.setFont(new Font("Tahoma", Font.BOLD, 16));
 		frame.getContentPane().add(lblAssignment);
 		
 		JLabel lblGradingCriterion = new JLabel("Grading criterion:");
-		springLayout.putConstraint(SpringLayout.NORTH, lblGradingCriterion, 379, SpringLayout.NORTH, frame.getContentPane());
-		springLayout.putConstraint(SpringLayout.SOUTH, lblAssignment, -19, SpringLayout.NORTH, lblGradingCriterion);
-		springLayout.putConstraint(SpringLayout.WEST, lblGradingCriterion, 0, SpringLayout.WEST, lblName);
+		lblGradingCriterion.setBounds(75, 379, 100, 14);
 		frame.getContentPane().add(lblGradingCriterion);
 		
 		JLabel lblPointsReceived = new JLabel("Points received:");
-		springLayout.putConstraint(SpringLayout.NORTH, lblPointsReceived, 13, SpringLayout.SOUTH, lblGradingCriterion);
-		springLayout.putConstraint(SpringLayout.WEST, lblPointsReceived, 0, SpringLayout.WEST, lblName);
+		lblPointsReceived.setBounds(75, 414, 100, 14);
 		frame.getContentPane().add(lblPointsReceived);
 		
 		JLabel lblPointsPossible = new JLabel("Points possible:");
-		springLayout.putConstraint(SpringLayout.WEST, lblPointsPossible, 0, SpringLayout.WEST, lblName);
-		springLayout.putConstraint(SpringLayout.SOUTH, lblPointsPossible, 0, SpringLayout.SOUTH, assignmentList);
+		lblPointsPossible.setBounds(75, 452, 100, 14);
 		frame.getContentPane().add(lblPointsPossible);
 		
 		JComboBox<String> comboBox = new JComboBox<>();
-		springLayout.putConstraint(SpringLayout.NORTH, comboBox, -3, SpringLayout.NORTH, lblGradingCriterion);
-		springLayout.putConstraint(SpringLayout.WEST, comboBox, 6, SpringLayout.EAST, lblGradingCriterion);
-		springLayout.putConstraint(SpringLayout.EAST, comboBox, 115, SpringLayout.EAST, label);
+		comboBox.setBounds(189, 375, 159, 22);
 		comboBox.setToolTipText("");
 		frame.getContentPane().add(comboBox);		 
 		
@@ -235,23 +200,19 @@ public class GraderHome {
 		});	
 		
 		ptsReceived = new JTextField();
-		springLayout.putConstraint(SpringLayout.NORTH, ptsReceived, 10, SpringLayout.SOUTH, lblGradingCriterion);
-		springLayout.putConstraint(SpringLayout.WEST, ptsReceived, 6, SpringLayout.EAST, lblPointsReceived);
-		springLayout.putConstraint(SpringLayout.EAST, ptsReceived, 61, SpringLayout.EAST, lblPointsReceived);
+		ptsReceived.setBounds(179, 411, 55, 20);
 		frame.getContentPane().add(ptsReceived);
 		ptsReceived.setColumns(10);
 		
 		ptsPossible = new JTextField();
-		springLayout.putConstraint(SpringLayout.NORTH, ptsPossible, -3, SpringLayout.NORTH, lblPointsPossible);
-		springLayout.putConstraint(SpringLayout.WEST, ptsPossible, 6, SpringLayout.EAST, lblPointsPossible);
-		springLayout.putConstraint(SpringLayout.EAST, ptsPossible, 61, SpringLayout.EAST, lblPointsPossible);
+		ptsPossible.setBounds(179, 449, 55, 20);
 		frame.getContentPane().add(ptsPossible);
 		ptsPossible.setColumns(10);
 		
 	
 		
 		JButton btnAdd_1 = new JButton("Add");
-		springLayout.putConstraint(SpringLayout.WEST, btnSubmitInfo, 209, SpringLayout.EAST, btnAdd_1);
+		btnAdd_1.setBounds(75, 494, 60, 23);
 		btnAdd_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -273,8 +234,6 @@ public class GraderHome {
 				}
 			}
 		});
-		springLayout.putConstraint(SpringLayout.NORTH, btnAdd_1, 18, SpringLayout.SOUTH, lblPointsPossible);
-		springLayout.putConstraint(SpringLayout.WEST, btnAdd_1, 0, SpringLayout.WEST, lblName);
 		frame.getContentPane().add(btnAdd_1);
 		
 
