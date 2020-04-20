@@ -14,7 +14,7 @@ class TestGradingCategory {
 	
 	@Test
 	void testCategoryPoints() {
-		assertEquals(category.categoryPoints(), 25, "Category points returns the wrong value");
+		assertEquals(25, category.categoryPoints(), "Category points returns the wrong value");
 	}
 
 	@Test
@@ -25,10 +25,10 @@ class TestGradingCategory {
 	
 	@Test
 	void testPointsPossible() {
-		assertEquals(input.pointsPossible, 20, "Incorrect number of points possible");
+		assertEquals(20, input.pointsPossible, "Incorrect number of points possible");
 	}
 	@Test
 	void testPointsAwarded() {
-		assertEquals(input.pointsAwarded, 10, "Incorrect number of points awarded");
+		assertEquals(10, input.pointsAwarded, "Incorrect number of points awarded");
 	}
 }
