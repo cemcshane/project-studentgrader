@@ -10,7 +10,7 @@
 <p> For the next iteration, we want the user to recieve helpful messages via the GUI when entering an incorrect input (ex. letters in percentage input), and be able to store classes and calculate to get a whole semester GPA. </p>
 
 <h2> Is there anything you implemented but doesn't currently work?</h2>
-<p> Mainly, we want to make sure all of the calculations are operating correctly and the user is receiving the correct grade for the course and semester based on their category and assignment inputs. We also want to write a Bash script so that the user can easily run the program via the command line. </p>
+<p> As of now everything that is implemented works as it should. We do have part of a Bash script created to streamline the process that doesn't fully work, however it's not yet implemented. </p>
 
 <h2> How to access our program:</h2>
 <ol>
