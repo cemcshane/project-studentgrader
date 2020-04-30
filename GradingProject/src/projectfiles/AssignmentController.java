@@ -17,4 +17,8 @@ public class AssignmentController {
 	public DefaultListModel<Assignment> getAssignments(){
 		return this.assignments;
 	}
+	
+	public void clear() {
+		this.assignments.clear();
+	}
 }
