@@ -42,10 +42,6 @@ public class Parser {
 		}
 		return null;
 	}
-	
-	public static void main(String[] args){ //might need to change to try/catch 								  //around the scanner declaration
-
-	}
 
 	@Override
 	public String toString() {
