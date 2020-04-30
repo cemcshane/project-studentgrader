@@ -42,6 +42,10 @@ public class Parser {
 		}
 		return null;
 	}
+	
+	public void clear() {
+		this.criteria.clear();
+	}
 
 	@Override
 	public String toString() {

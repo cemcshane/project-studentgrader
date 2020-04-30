@@ -28,4 +28,8 @@ public class GradingCatController {
 		}
 		return true;
 	}
+	
+	public void clear() {
+		this.criteria.clear();
+	}
 }
