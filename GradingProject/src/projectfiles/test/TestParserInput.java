@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
+import projectfiles.Assignment;
 import projectfiles.GradingCategory;
 import projectfiles.Parser;
 
@@ -11,7 +12,7 @@ class TestParserInput {
 
 	Parser input = new Parser();
 	GradingCategory category = new GradingCategory("name", 50);
-	
+	Assignment ass = new Assignment(5,10,category);
 	
 	@Test
 	void testChangeName() {
@@ -40,6 +41,24 @@ class TestParserInput {
 	@Test
 	void testGetCategoryNull() {
 		assertNull(input.getCategory(""));
+	}
+	
+	@Test
+	void testDeleteCategory() {
+		input.deleteCategory(category);
+		assertEquals(input.getCategory(category.name), null, "Category was not deleted successfully");
+	}
+	
+	@Test
+	void testDeleteAssignment() {
+		input.deleteAssignment(ass);
+		assertFalse(category.assignments.contains(ass), "Assignment was not deleted successfully");
+	}
+	
+	@Test
+	void testClear() {
+		input.clear();
+		assertTrue(input.criteria.isEmpty(), "Criteria were not cleared correctly");
 	}
 	
 }
