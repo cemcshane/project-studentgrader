@@ -13,7 +13,7 @@ class TestCalculations {
 
 
 	@Test
-	void testFinalCalculationSortaSimple() {
+	void testFinalCalculationSimple() {
 		Parser input = new Parser();
 		GradingCategory catFive = new GradingCategory("five", 100);
 		input.addCategory(catFive);
@@ -23,6 +23,21 @@ class TestCalculations {
 		double returnValue = calc.finalCalculation();
 		assertEquals(100, returnValue);
 	}
+	
+//	@Test
+//	void testFinalCalculationSortaSimple() {
+//		Parser input = new Parser();
+//		GradingCategory catFour = new GradingCategory("four", 100);
+//		GradingCategory catFour = new GradingCategory("four", 100);
+//		input.addCategory(catFour);
+//		Assignment assOne = new Assignment(100, 100, catFour);
+//		Assignment assTwo = new Assignment(100, 100, catFour);
+//		Assignment assThree = new Assignment(100, 100, catFour);
+//		Assignment assFour = new Assignment(100, 100, catFour);
+//		Calculations calc = new Calculations(input);
+//		double returnValue = calc.finalCalculation();
+//		assertEquals(100, returnValue);
+//	}
 	
 	@Test
 	void testFinalCalculation() {

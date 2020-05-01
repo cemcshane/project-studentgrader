@@ -10,12 +10,21 @@ import projectfiles.GradingCategory;
 class TestAssignment {
 	
 	GradingCategory category = new GradingCategory("name", 5);
-	Assignment input = new Assignment(10, 20, category);
+	Assignment input = new Assignment(10.0, 20.0, category);
 	
 	
 	@Test
 	void testGradeAssignment() {
-		assertEquals(input.gradeAssignment(), .5, "Assignment was not graded correctly");
+		assertEquals(.5, input.gradeAssignment(), "Assignment was not graded correctly");
+	}
+	
+	GradingCategory categoryTwo = new GradingCategory("name", 2);
+	Assignment inputTwo = new Assignment(98.0, 100.0, category);
+	
+	
+	@Test
+	void testGradeAssignmentTwo() {
+		assertEquals((98.0/100.0), inputTwo.gradeAssignment(), "Assignment was not graded correctly");
 	}
 
 }
