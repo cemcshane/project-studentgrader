@@ -14,6 +14,7 @@ import java.awt.event.MouseEvent;
 import java.text.DecimalFormat;
 
 import javax.swing.JComboBox;
+import javax.swing.JScrollPane;
 
 public class GraderHome {
 
@@ -64,25 +65,31 @@ public class GraderHome {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
+		JScrollPane scrollPane_1 = new JScrollPane();
+		scrollPane_1.setBounds(498, 311, 270, 97);
+		frame.getContentPane().add(scrollPane_1);
+		
 		
 		
 		JList<Assignment> assignmentList = new JList<>(assignmentController.getAssignments());
-		assignmentList.setBounds(498, 311, 270, 97);
-		frame.getContentPane().add(assignmentList);
+		scrollPane_1.setViewportView(assignmentList);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(498, 130, 270, 97);
+		frame.getContentPane().add(scrollPane);
+		
+		JLabel lblGradingCriteria = new JLabel("Grade Breakdown");
+		lblGradingCriteria.setBounds(590, 110, 151, 14);
+		frame.getContentPane().add(lblGradingCriteria);		
 		
 		JList<GradingCategory> gradingCrit = new JList<>(critController.getCriteria());
-		gradingCrit.setBounds(498, 130, 270, 97);
-		frame.getContentPane().add(gradingCrit);
+		scrollPane.setViewportView(gradingCrit);
+		lblGradingCriteria.setLabelFor(gradingCrit);
 		
 		JLabel lblAddedAssignments = new JLabel("Added Assignments");
 		lblAddedAssignments.setBounds(579, 291, 120, 14);
 		lblAddedAssignments.setLabelFor(lblAddedAssignments);
 		frame.getContentPane().add(lblAddedAssignments);
-		
-		JLabel lblGradingCriteria = new JLabel("Grade Breakdown");
-		lblGradingCriteria.setBounds(590, 110, 151, 14);
-		lblGradingCriteria.setLabelFor(gradingCrit);
-		frame.getContentPane().add(lblGradingCriteria);
 		
 		nameTextField = new JTextField();
 		nameTextField.setBounds(295, 62, 169, 20);
@@ -130,7 +137,7 @@ public class GraderHome {
 		critTextField1.setColumns(10);
 		
 		JLabel lblPercentage = new JLabel("Percentage:");
-		lblPercentage.setBounds(75, 172, 70, 14);
+		lblPercentage.setBounds(75, 172, 83, 14);
 		frame.getContentPane().add(lblPercentage);
 		
 		percent = new JTextField();
@@ -152,7 +159,7 @@ public class GraderHome {
 		frame.getContentPane().add(lblAssignment);
 		
 		JLabel lblGradingCriterion = new JLabel("Grading criterion:");
-		lblGradingCriterion.setBounds(75, 304, 100, 14);
+		lblGradingCriterion.setBounds(75, 304, 120, 14);
 		frame.getContentPane().add(lblGradingCriterion);
 		
 		JLabel lblPointsReceived = new JLabel("Points received:");
@@ -258,21 +265,45 @@ public class GraderHome {
 		frame.getContentPane().add(btnAdd_1);
 		
 		JButton btnDeleteAssignment = new JButton("Delete assignment");
+		btnDeleteAssignment.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Assignment deleteThis = assignmentList.getSelectedValue();
+				grader.deleteAssignment(deleteThis);
+				assignmentController.deleteAssignment(deleteThis);				
+			}
+		});
 		btnDeleteAssignment.setBounds(557, 419, 159, 23);
 		frame.getContentPane().add(btnDeleteAssignment);
 		
 		JButton btnDeleteCategory = new JButton("Delete category");
+		btnDeleteCategory.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				GradingCategory deleteThis = gradingCrit.getSelectedValue();
+				for(Assignment a : deleteThis.getAssignments()) {
+					grader.deleteAssignment(a);
+					assignmentController.deleteAssignment(a);
+				}				
+				grader.deleteCategory(deleteThis);
+				critController.deleteCategory(deleteThis);
+				comboBox.removeItem(deleteThis.name);
+			}
+		});
 		btnDeleteCategory.setBounds(557, 238, 159, 23);
 		frame.getContentPane().add(btnDeleteCategory);
 		
-		JList<String> courseList = new JList<>(gradeController.getGrades());
-		courseList.setBounds(43, 517, 380, 97);
-		frame.getContentPane().add(courseList);
+		JScrollPane scrollPane_2 = new JScrollPane();
+		scrollPane_2.setBounds(43, 517, 380, 97);
+		frame.getContentPane().add(scrollPane_2);
 		
 		JLabel lblMyCourses = new JLabel("My Courses & Grades");
-		lblMyCourses.setLabelFor(courseList);
 		lblMyCourses.setBounds(171, 496, 151, 14);
-		frame.getContentPane().add(lblMyCourses);
+		frame.getContentPane().add(lblMyCourses);		
+		
+		JList<String> courseList = new JList<>(gradeController.getGrades());
+		scrollPane_2.setViewportView(courseList);
+		lblMyCourses.setLabelFor(courseList);
 		
 		JLabel lblSemesterGpa = new JLabel("Semester GPA:");
 		lblSemesterGpa.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -280,8 +311,9 @@ public class GraderHome {
 		frame.getContentPane().add(lblSemesterGpa);	
 		
 		JLabel gpa_display = new JLabel("  ");
+		lblSemesterGpa.setLabelFor(gpa_display);
 		gpa_display.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		gpa_display.setBounds(521, 547, 49, 34);
+		gpa_display.setBounds(526, 551, 49, 34);
 		frame.getContentPane().add(gpa_display);		
 		
 		JButton btnNewButton = new JButton("Calculate my semester GPA");
@@ -292,7 +324,7 @@ public class GraderHome {
 				gpa_display.setText(gpa);
 			}
 		});
-		btnNewButton.setBounds(127, 625, 195, 23);
+		btnNewButton.setBounds(121, 625, 221, 23);
 		frame.getContentPane().add(btnNewButton);
 	}
 }

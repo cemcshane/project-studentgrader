@@ -29,6 +29,10 @@ public class GradingCatController {
 		return true;
 	}
 	
+	public void deleteCategory(GradingCategory input) {
+		this.criteria.removeElement(input);
+	}
+	
 	public void clear() {
 		this.criteria.clear();
 	}

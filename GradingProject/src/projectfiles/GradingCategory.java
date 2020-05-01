@@ -24,9 +24,6 @@ public class GradingCategory {
 		return points;
 	}
 	
-	public void addAssignment(Assignment a) {
-		this.assignments.add(a);
-	}
 	
 	private double pointsPossible() {
 		double possiblePoints = 0;
@@ -42,6 +39,10 @@ public class GradingCategory {
 			awardedPoints += a.pointsAwarded;
 		}
 		return awardedPoints;
+	}
+	
+	public LinkedList<Assignment> getAssignments(){
+		return this.assignments;
 	}
 	
 	@Override

@@ -25,14 +25,17 @@ public class Parser {
 		this.criteria.add(category);
 	}
 	
-	public void addAssignment(String category, Assignment a) {
-		for(GradingCategory g : this.criteria) {
-			if(g.name==category) {
-				g.addAssignment(a);
-				break;
-			}
-		}
+	public void deleteCategory(GradingCategory input) {
+		this.criteria.remove(input);
 	}
+	
+	public void deleteAssignment(Assignment input) {
+		input.category.assignments.remove(input);
+	}
+	
+	public void clear() {
+		this.criteria.clear();
+	}	
 	
 	public GradingCategory getCategory(String name) {
 		for(GradingCategory g : this.criteria) {
@@ -43,9 +46,7 @@ public class Parser {
 		return null;
 	}
 	
-	public void clear() {
-		this.criteria.clear();
-	}
+
 
 	@Override
 	public String toString() {
