@@ -1,16 +1,15 @@
 package projectfiles;
 
-import java.awt.Component;
 import java.util.LinkedList;
 
 public class GradingCategory {
 	//instance variables
 	public String name;
-	public int percentage;
+	public double percentage;
 	public LinkedList<Assignment> assignments;
 	
 	//constructor
-	public GradingCategory(String name, int percentage) {
+	public GradingCategory(String name, double percentage) {
 		this.name = name;
 		this.percentage = percentage;
 		this.assignments = new LinkedList<Assignment>();
@@ -25,9 +24,6 @@ public class GradingCategory {
 		return points;
 	}
 	
-	public void addAssignment(Assignment a) {
-		this.assignments.add(a);
-	}
 	
 	private double pointsPossible() {
 		double possiblePoints = 0;
@@ -43,6 +39,10 @@ public class GradingCategory {
 			awardedPoints += a.pointsAwarded;
 		}
 		return awardedPoints;
+	}
+	
+	public LinkedList<Assignment> getAssignments(){
+		return this.assignments;
 	}
 	
 	@Override

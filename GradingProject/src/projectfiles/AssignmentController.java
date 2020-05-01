@@ -14,6 +14,14 @@ public class AssignmentController {
 		this.assignments.addElement(a);
 	}
 	
+	public void deleteAssignment(Assignment input) {
+		this.assignments.removeElement(input);
+	}
+	
+	public void clear() {
+		this.assignments.clear();
+	}	
+	
 	public DefaultListModel<Assignment> getAssignments(){
 		return this.assignments;
 	}
