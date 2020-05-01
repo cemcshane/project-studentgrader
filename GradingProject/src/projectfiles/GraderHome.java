@@ -1,11 +1,16 @@
 package projectfiles;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JList;
+import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.Popup;
+import javax.swing.PopupFactory;
+
 import java.awt.Font;
 
 import javax.swing.JButton;
@@ -25,6 +30,7 @@ public class GraderHome {
 	private JTextField percent;
 	private JTextField ptsReceived;
 	private JTextField ptsPossible;
+	private Popup alert;
 
 	/**
 	 * Launch the application.
@@ -53,6 +59,11 @@ public class GraderHome {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		PopupFactory pFactory = new PopupFactory();
+		JPanel popPanel = new JPanel();
+		popPanel.setBackground(new Color(200, 200, 200));
+		JLabel popLabel = new JLabel("Insert alert string");
+		JButton popButton = new JButton("OK");
 		DecimalFormat df = new DecimalFormat("0.00");
 		Parser grader = new Parser();
 		Semester semester = new Semester();
@@ -119,8 +130,6 @@ public class GraderHome {
 		lblCredits.setBounds(494, 65, 50, 14);
 		lblCredits.setLabelFor(credTextField);
 		frame.getContentPane().add(lblCredits);
-		
-
 		
 		JLabel lblGradingCriterioneg = new JLabel("Grading Criteria (e.g. Quizzes, 10%)");
 		lblGradingCriterioneg.setBounds(60, 112, 363, 20);
@@ -200,11 +209,19 @@ public class GraderHome {
 						comboBox.removeAllItems();
 					}
 					catch(Exception exception) {
-						System.out.println("Credits field is not a number."); //make this a pop-up
+						popLabel.setText("Credits field is not a number.");
+						popPanel.add(popLabel);
+						popPanel.add(popButton);
+						alert = pFactory.getPopup(frame, popPanel, 425, 400);
+						alert.show();
 					}
 				}
 				else {
-					System.out.println("Your grading criteria do not add up to 100%"); //make this a pop-up
+					popLabel.setText("Your grading criteria do not add up to 100%");
+					popPanel.add(popLabel);
+					popPanel.add(popButton);
+					alert = pFactory.getPopup(frame, popPanel, 425, 400);
+					alert.show();
 				}
 			}
 		});
@@ -213,14 +230,23 @@ public class GraderHome {
 		btnAdd.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				String criterionName = critTextField1.getText();
-				double percentage = Double.parseDouble(percent.getText());
-				GradingCategory cat = new GradingCategory(criterionName, percentage);
-				grader.addCategory(cat);
-				critController.addCriterion(cat);
-				comboBox.addItem(cat.name);
-				critTextField1.setText("");
-				percent.setText("");
+				try {
+					String criterionName = critTextField1.getText();
+					double percentage = Double.parseDouble(percent.getText());
+					GradingCategory cat = new GradingCategory(criterionName, percentage);
+					grader.addCategory(cat);
+					critController.addCriterion(cat);
+					comboBox.addItem(cat.name);
+					critTextField1.setText("");
+					percent.setText("");					
+				}
+				catch (Exception e){
+					popLabel.setText("Percentage is not a number.");
+					popPanel.add(popLabel);
+					popPanel.add(popButton);
+					alert = pFactory.getPopup(frame, popPanel, 425, 400);
+					alert.show();
+				}
 			}
 		});	
 		
@@ -252,13 +278,20 @@ public class GraderHome {
 						ptsReceived.setText("");
 					}
 					else {
-						System.out.println("Your assignment cannot be out of 0 points."); //make pop-up
+						popLabel.setText("Your assignment cannot be out of 0 points.");
+						popPanel.add(popLabel);
+						popPanel.add(popButton);
+						alert = pFactory.getPopup(frame, popPanel, 425, 400);
+						alert.show();
 					}				
 				}
 				//sanitize input
 				catch (Exception e) {
-					//make pop-up
-					System.out.println("Invalid input. Make sure field isn't left blank and that number values are used if necessary.");
+					popLabel.setText("Invalid input. Make sure field isn't left blank and that number values are used if necessary.");
+					popPanel.add(popLabel);
+					popPanel.add(popButton);
+					alert = pFactory.getPopup(frame, popPanel, 425, 400);
+					alert.show();
 				}
 			}
 		});
@@ -268,9 +301,19 @@ public class GraderHome {
 		btnDeleteAssignment.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Assignment deleteThis = assignmentList.getSelectedValue();
-				grader.deleteAssignment(deleteThis);
-				assignmentController.deleteAssignment(deleteThis);				
+				try {
+					Assignment deleteThis = assignmentList.getSelectedValue();
+					grader.deleteAssignment(deleteThis);
+					assignmentController.deleteAssignment(deleteThis);						
+				}
+				catch(Exception exc) {
+					popLabel.setText("You must select an assignment to delete.");
+					popPanel.add(popLabel);
+					popPanel.add(popButton);
+					alert = pFactory.getPopup(frame, popPanel, 425, 400);
+					alert.show();
+				}
+		
 			}
 		});
 		btnDeleteAssignment.setBounds(557, 419, 159, 23);
@@ -280,6 +323,7 @@ public class GraderHome {
 		btnDeleteCategory.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				try {
 				GradingCategory deleteThis = gradingCrit.getSelectedValue();
 				for(Assignment a : deleteThis.getAssignments()) {
 					grader.deleteAssignment(a);
@@ -288,6 +332,14 @@ public class GraderHome {
 				grader.deleteCategory(deleteThis);
 				critController.deleteCategory(deleteThis);
 				comboBox.removeItem(deleteThis.name);
+				}
+				catch(Exception ex) {
+					popLabel.setText("You must select a category to delete.");
+					popPanel.add(popLabel);
+					popPanel.add(popButton);
+					alert = pFactory.getPopup(frame, popPanel, 425, 400);
+					alert.show();
+				}
 			}
 		});
 		btnDeleteCategory.setBounds(557, 238, 159, 23);
@@ -320,11 +372,30 @@ public class GraderHome {
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				String gpa = df.format(semester.getGPA()) + "";
-				gpa_display.setText(gpa);
+				if(gradeController.getGrades().isEmpty()) {
+					popLabel.setText("You have not added any courses.");
+					popPanel.add(popLabel);
+					popPanel.add(popButton);
+					alert = pFactory.getPopup(frame, popPanel, 425, 400);
+					alert.show();
+				}
+				else {
+					String gpa = df.format(semester.getGPA()) + "";
+					gpa_display.setText(gpa);					
+				}
 			}
 		});
 		btnNewButton.setBounds(121, 625, 221, 23);
 		frame.getContentPane().add(btnNewButton);
+		
+		popButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				popPanel.removeAll();
+				popPanel.setSize(50,50);
+				popPanel.repaint();
+				alert.hide();
+			}
+		});
 	}
 }
