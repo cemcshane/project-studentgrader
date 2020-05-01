@@ -211,15 +211,16 @@ public class GraderHome {
 					}
 					catch(Exception exception) {
 						popLabel.setText("Credits field is not a number.");
-						popPanel.add(popLabel, 0);
-						popPanel.setSize(popLabel.getText().length(), 20);
+						popPanel.add(popLabel);
+						popPanel.add(popButton);
 						alert = pFactory.getPopup(frame, popPanel, 425, 400);
 						alert.show();
 					}
 				}
 				else {
 					popLabel.setText("Your grading criteria do not add up to 100%");
-					popPanel.add(popLabel, 0);
+					popPanel.add(popLabel);
+					popPanel.add(popButton);
 					alert = pFactory.getPopup(frame, popPanel, 425, 400);
 					alert.show();
 				}
@@ -242,8 +243,8 @@ public class GraderHome {
 				}
 				catch (Exception e){
 					popLabel.setText("Percentage is not a number.");
-					popPanel.add(popLabel, 0);
-					popPanel.setSize(popLabel.getText().length(), 20);
+					popPanel.add(popLabel);
+					popPanel.add(popButton);
 					alert = pFactory.getPopup(frame, popPanel, 425, 400);
 					alert.show();
 				}
@@ -279,8 +280,8 @@ public class GraderHome {
 					}
 					else {
 						popLabel.setText("Your assignment cannot be out of 0 points.");
-						popPanel.add(popLabel, 0);
-						popPanel.setSize(popLabel.getText().length(), 20);
+						popPanel.add(popLabel);
+						popPanel.add(popButton);
 						alert = pFactory.getPopup(frame, popPanel, 425, 400);
 						alert.show();
 					}				
@@ -288,8 +289,8 @@ public class GraderHome {
 				//sanitize input
 				catch (Exception e) {
 					popLabel.setText("Invalid input. Make sure field isn't left blank and that number values are used if necessary.");
-					popPanel.add(popLabel, 0);
-					popPanel.setSize(popLabel.getText().length(), 20);
+					popPanel.add(popLabel);
+					popPanel.add(popButton);
 					alert = pFactory.getPopup(frame, popPanel, 425, 400);
 					alert.show();
 				}
@@ -308,8 +309,8 @@ public class GraderHome {
 				}
 				catch(Exception exc) {
 					popLabel.setText("You must select an assignment to delete.");
-					popPanel.add(popLabel, 0);
-					popPanel.setSize(popLabel.getText().length(), 20);
+					popPanel.add(popLabel);
+					popPanel.add(popButton);
 					alert = pFactory.getPopup(frame, popPanel, 425, 400);
 					alert.show();
 				}
@@ -335,8 +336,8 @@ public class GraderHome {
 				}
 				catch(Exception ex) {
 					popLabel.setText("You must select a category to delete.");
-					popPanel.add(popLabel, 0);
-					popPanel.setSize(popLabel.getText().length(), 20);
+					popPanel.add(popLabel);
+					popPanel.add(popButton);
 					alert = pFactory.getPopup(frame, popPanel, 425, 400);
 					alert.show();
 				}
@@ -374,8 +375,8 @@ public class GraderHome {
 			public void mouseClicked(MouseEvent e) {
 				if(gradeController.getGrades().isEmpty()) {
 					popLabel.setText("You have not added any courses.");
-					popPanel.add(popLabel, 0);
-					popPanel.setSize(popLabel.getText().length(), 20);
+					popPanel.add(popLabel);
+					popPanel.add(popButton);
 					alert = pFactory.getPopup(frame, popPanel, 425, 400);
 					alert.show();
 				}
@@ -391,7 +392,7 @@ public class GraderHome {
 		popButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				popPanel.remove(0);
+				popPanel.removeAll();
 				alert.hide();
 			}
 		});
