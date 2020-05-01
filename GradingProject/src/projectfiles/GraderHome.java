@@ -234,12 +234,21 @@ public class GraderHome {
 				try {
 					String criterionName = critTextField1.getText();
 					double percentage = Double.parseDouble(percent.getText());
-					GradingCategory cat = new GradingCategory(criterionName, percentage);
-					grader.addCategory(cat);
-					critController.addCriterion(cat);
-					comboBox.addItem(cat.name);
-					critTextField1.setText("");
-					percent.setText("");					
+					if(grader.getCategory(criterionName)==null) {
+						GradingCategory cat = new GradingCategory(criterionName, percentage);
+						grader.addCategory(cat);
+						critController.addCriterion(cat);
+						comboBox.addItem(cat.name);
+						critTextField1.setText("");
+						percent.setText("");
+					}
+					else {
+						popLabel.setText("          This category already exists.          ");
+						popPanel.add(popLabel, BorderLayout.NORTH);
+						popPanel.add(popButton, BorderLayout.SOUTH);
+						alert = pFactory.getPopup(frame, popPanel, 425, 400);
+						alert.show();
+					}
 				}
 				catch (Exception e){
 					popLabel.setText("          Percentage is not a number.          ");
