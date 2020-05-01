@@ -64,8 +64,6 @@ public class GraderHome {
 		popPanel.setBackground(new Color(200, 200, 200));
 		JLabel popLabel = new JLabel("Insert alert string");
 		JButton popButton = new JButton("OK");
-		popPanel.setSize(50,50);
-		popPanel.repaint();
 		DecimalFormat df = new DecimalFormat("0.00");
 		Parser grader = new Parser();
 		Semester semester = new Semester();
@@ -394,6 +392,8 @@ public class GraderHome {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				popPanel.removeAll();
+				popPanel.setSize(50,50);
+				popPanel.repaint();
 				alert.hide();
 			}
 		});
