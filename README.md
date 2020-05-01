@@ -15,9 +15,8 @@
 <h2> How to access our program:</h2>
 <ol>
    <li> Clone the repository to your device via the command line. NOTE: If you're a Windows user, go to Start and type cmd into your search bar, then hit enter.  You will need to use this terminal.</li>
-   <li> Navigate to the src folder (cd project-studentgrader/GradingProject/src) </li>
-   <li> Run the command javac projectfiles/*.java (if this gives you trouble, you might not have Java properly installed on your machine--https://stackoverflow.com/questions/7709041/javac-is-not-recognized-as-an-internal-or-external-command-operable-program-or may help)</li>
-   <li> Run the command java projectfiles/GraderHome (final program output will be printed to the console, not GUI) </li>
-</ol>
+   <li>Run ./graderscript.sh via the command line. This should open the GUI on your screen.</li>
+   <li>Input the name of your classes, add a grading category, and input multiple assignments.</li>
+   <li>Your final grade percentage and letter grade will be echoed on the command line</li>
    
    
