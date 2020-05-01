@@ -17,11 +17,11 @@ class TestGradingCategory {
 		assertEquals(25, category.categoryPoints(), "Category points returns the wrong value");
 	}
 
-	@Test
-	void testAddAssignment() {
-		category.addAssignment(input);
-		assertTrue(category.assignments.contains(input));
-	}
+//	@Test
+//	void testAddAssignment() {
+//		category.addAssignment(input);
+//		assertTrue(category.assignments.contains(input));
+//	}
 	
 	@Test
 	void testPointsPossible() {
