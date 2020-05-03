@@ -2,16 +2,13 @@
 
 
 <h2> What user stories were completed in this iteration? </h2>
-<p> For this iteration, we created a user story in which the user can input a grading criteria with percentage weight (eg. Quizzes 25%, Tests 75%) and input multiple assignments for each criteria. The user can also input their recieved grade for each individual assignment, with a section for points awarded and total points possible. </p>
-
-<p> A GUI was also implemented to make the input process easier and more streamlined for the user. JUnit tests were implemented in this iteration, as well. </p>
+<p> For this iteration, we created a user story in which the user can delete assignments and categories to test possible grades or if they jut made a mistake. We also created a user story where the user can submit information from all of their classes to calculate their semester GPA. In these user stories the final grades now show up on the GUI instead of the console. We also created a user story where there's a pop up error when a user submits invalid input. Our last user story is that a user can now use a script to run the program instead of several commands.</p>
 
 <h2> What user stories do you intend to complete in the next iteration? </h2>
-<p> For the next iteration, we want the user to recieve helpful messages via the GUI when entering an incorrect input (ex. letters in percentage input), and be able to store classes and calculate to get a whole semester GPA. </p>
+None, the project is complete.
 
 <h2> Is there anything you implemented but doesn't currently work?</h2>
-<p> As of now everything that is implemented works as it should. We do have part of a Bash script created to streamline the process that doesn't fully work, however it's not yet implemented. </p>
-
+Everything we implemented works and has been tested.
 <h2> How to access our program:</h2>
 <ol>
    <li> Clone the repository to your device via the command line. NOTE: If you're a Windows user, go to Start and type cmd into your search bar, then hit enter.  You will need to use this terminal.</li>
