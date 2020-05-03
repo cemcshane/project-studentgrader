@@ -14,7 +14,7 @@ Everything we implemented works and has been tested.
    <li> Clone the repository to your device via the command line. NOTE: If you're a Windows user, go to Start and type cmd into your search bar, then hit enter.  You will need to use this terminal.</li>
    <li>Via the command line, cd into project-studentgrader</li>
    <li>Run ./graderscript.sh via the command line (if you're on Windows cmd, run graderscript.sh instead if ./graderscript.sh doesn't work). This should open the GUI on your screen.</li>
-   <li>Input the name of your classes, add a grading category, and input multiple assignments.</li>
-   <li>Your final grade percentage and letter grade will be echoed on the command line</li>
+   <li>Input the name of your classes, add a grading category, and input multiple assignments for various classes.</li>
+   <li>Your final grade percentage and letter grade will displayed on the GUI and you can use them to calculate a semester GPA!</li>
    
    
